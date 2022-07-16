@@ -1,0 +1,32 @@
+import plotly.express as px
+import dash
+from dash import dcc, html
+from dash.dependencies import Input, Output
+import pandas as pd
+import numpy as np
+
+import seaborn as sns
+import plotly.express as px
+
+import dash_bootstrap_components as dbc
+import dash
+from dash import dcc, html
+from dash.dependencies import Input, Output
+import pandas as pd
+import numpy as np
+import plotly.graph_objects as go
+
+#for the sentiment analysis
+import sys
+from textblob import TextBlob
+import tweepy
+import matplotlib.pyplot as plt
+import re
+
+def read_data(name = 'btcusd'):
+    import pandas as pd
+    path = f"data/{name}.csv"
+    df = pd.read_csv(path)    
+    x = [i for i in range(len(df.columns.isin(['time','open','close','high','low','volume'])-1)) if df.columns.isin(['time','open','close','high','low','volume'])[i] == False ]
+    df.drop(columns=df.columns[x],inplace =True)
+    return df
